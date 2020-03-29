@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ### Command line
 ```
-odt-handlebars infile.odt outfile.odt replacemants.json
+odt_handlebars infile.odt outfile.odt replacemants.json
 ```
 
 ### Programaticaly
@@ -31,8 +31,6 @@ odt-handlebars infile.odt outfile.odt replacemants.json
 require 'odt_handlebars'
 
 OdtHandlebars.replace(in_file_name,out_file_name, replacements_hash)
-
-or
 
 ```
 
