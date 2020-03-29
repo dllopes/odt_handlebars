@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'odt_handlebars'
+
+OdtHandlebars.replace(ARGV[0],ARGV[1],JSON.parse(File.read(ARGV[2])))
+
+
