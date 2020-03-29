@@ -24,7 +24,7 @@ module OdtHandlebars
               next if e.file_type_is?(:directory)
               if e.name == "content.xml"
                 content = e.get_input_stream.read
-                output=replace(content,@fill)
+                output=replace_handlebars(content,@fill)
                 outzip.put_next_entry(e.name)
                 outzip.write output
               else
@@ -35,13 +35,12 @@ module OdtHandlebars
           end
         end
       end
-      outfile
+      @outfile
     end
 
     FIELD_MATCHER=Regexp.new("{{.+?}}",Regexp::MULTILINE)
-    def replace(raw_content,placeholders)
+    def replace_handlebars(raw_content,placeholders)
       content=OdtCleaner.clean(raw_content)
-      puts content
       doc=Nokogiri.parse(content)
       rows=doc.xpath("//table:table-row/*[starts-with(.,'{{/each')]")
       rows.each do |row| row.parent.replace(row.to_str) end

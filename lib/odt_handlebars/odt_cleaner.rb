@@ -23,18 +23,18 @@ module OdtHandlebars
       curlstart=0
       until scanner.eos?
         if res=scanner.scan(/<[^>]+>/)
-#          puts "match: #{res}"
+          #          puts "match: #{res}"
           out << res
         elsif res=scanner.scan(/[^{<]+/)
-#          puts "match: #{res}"
+          #          puts "match: #{res}"
           curlstart = 0
           out << res
         elsif res=scanner.scan(/{/)
-#          puts "match: #{res}"
+          #          puts "match: #{res}"
           curlstart += 1
           out << "{" # found one
           if curlstart == 2
- #           puts "looking for end"
+            #           puts "looking for end"
             scanend(scanner,out)
             curlstart=0
           end
@@ -47,21 +47,21 @@ module OdtHandlebars
       curlend=0
       until curlend == 2
         if res=scanner.scan(/<[^>]+>/)
-#          puts "ignored: #{res}"
+        #          puts "ignored: #{res}"
         #out << res
         elsif res=scanner.scan(/[^}<]+/)
-#          puts "match: #{res}"
+          #          puts "match: #{res}"
           out << res.gsub(/\n/,'')
         elsif res=scanner.scan(/}/)
-#          puts "match: #{res}"
+          #          puts "match: #{res}"
           out << "}"
           curlend += 1
         else
           warn("failed to scan handlebars end")
-#          puts "else case"
+          #          puts "else case"
         end
       end
-#      puts "found end"
+      #      puts "found end"
     end
   end
 end
@@ -88,4 +88,3 @@ end
 #      </text:section>
 #
 #'
-end

@@ -1,4 +1,5 @@
 require "odt_handlebars/version"
+require "odt_handlebars/odt_fill"
 
 module OdtHandlebars
   class Error < StandardError; end
